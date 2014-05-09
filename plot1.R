@@ -18,6 +18,6 @@ data <- alldata[alldata$datetime >= as.POSIXlt("2007-02-01") & alldata$datetime 
 
 # make plot1 using png device
 png("plot1.png", width=480, height=480, units="px", bg="transparent")
-with(data=data, hist(Global_active_power,col="red", main="Global Active Power",
-					 xlab="Global Active Power (kilowatts)"))
+with(data=data[!is.na(data$Global_active_power),], hist(Global_active_power,col="red", main="Global Active Power",
+        					 xlab="Global Active Power (kilowatts)"))
 dev.off()
