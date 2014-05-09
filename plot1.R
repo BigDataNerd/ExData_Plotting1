@@ -21,39 +21,3 @@ png("plot1.png", width=480, height=480, units="px", bg="transparent")
 with(data=data, hist(Global_active_power,col="red", main="Global Active Power",
 					 xlab="Global Active Power (kilowatts)"))
 dev.off()
-
-
-# make plot2 TODO MOVE THIS TO SEPARATE FILE LATER
-png("plot2.png", width=480, height=480, units="px", bg="transparent")
-with(data=data[!is.na(data$Global_active_power),], plot(datetime,Global_active_power, main="",
-					 ylab='Global Active Power (kilowatts)', type='l',xlab=""))
-dev.off()
-
-# make plot3 TODO MOVE THIS TO SEPARATE FILE LATER
-png("plot3.png", width=480, height=480, units="px", bg="transparent")
-with(data=data, plot(datetime,Sub_metering_1, main="", ylab='Energy sub metering', type='l',xlab=""))
-with(data=data, lines(datetime, Sub_metering_2, col='red'))
-with(data=data, lines(datetime, Sub_metering_3, col='blue'))
-legend("topright",c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'),lwd=2,col=c('black','red','blue'))
-dev.off()
-
-# make plot4 TODO MOVE THIS TO SEPARATE FILE LATER
-png("plot4.png", width=480, height=480, units="px", bg="transparent")
-par(mfcol=c(2,2))
-
-# plot2 in upper left...
-with(data=data[!is.na(data$Global_active_power),], plot(datetime,Global_active_power, main="",
-										ylab='Global Active Power', type='l',xlab=""))
-# plot3 in lower left...
-with(data=data, plot(datetime,Sub_metering_1, main="", ylab='Energy sub metering', type='l',xlab=""))
-with(data=data, lines(datetime, Sub_metering_2, col='red'))
-with(data=data, lines(datetime, Sub_metering_3, col='blue'))
-legend("topright",c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'),
-	   yjust=0, bty='n',lwd=2,col=c('black','red','blue'))
-
-# new plot upper right...
-with(data=data, plot(datetime, Voltage, type='l'))
-
-# new plot lower right...
-with(data=data, plot(datetime, Global_reactive_power, type='l'))
-dev.off()
