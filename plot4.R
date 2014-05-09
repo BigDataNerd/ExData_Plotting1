@@ -24,15 +24,15 @@ par(mfcol=c(2,2))
 with(data=data[!is.na(data$Global_active_power),], plot(datetime,Global_active_power, main="",
 										ylab='Global Active Power', type='l',xlab=""))
 # plot3 in lower left...
-with(data=data, plot(datetime,Sub_metering_1, main="", ylab='Energy sub metering', type='l',xlab=""))
-with(data=data, lines(datetime, Sub_metering_2, col='red'))
-with(data=data, lines(datetime, Sub_metering_3, col='blue'))
+with(data=data[!is.na(data$Sub_metering_1),], plot(datetime,Sub_metering_1, main="", ylab='Energy sub metering', type='l',xlab=""))
+with(data=data[!is.na(data$Sub_metering_2),], lines(datetime, Sub_metering_2, col='red'))
+with(data=data[!is.na(data$Sub_metering_3),], lines(datetime, Sub_metering_3, col='blue'))
 legend("topright",c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'),
 	   yjust=0, bty='n',lwd=2,col=c('black','red','blue'))
 
 # new plot upper right...
-with(data=data, plot(datetime, Voltage, type='l'))
+with(data=data[!is.na(data$Voltage),], plot(datetime, Voltage, type='l'))
 
 # new plot lower right...
-with(data=data, plot(datetime, Global_reactive_power, type='l'))
+with(data=data[!is.na(data$Global_reactive_power),], plot(datetime, Global_reactive_power, type='l'))
 dev.off()
